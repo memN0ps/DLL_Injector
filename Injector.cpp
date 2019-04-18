@@ -13,7 +13,7 @@ bool injectDll(uintptr_t processID, const char* dllPath) {
 		// This will allocate memory for the dllpath in the target process length of the path string + null terminator
 		LPVOID loadPath = VirtualAllocEx(hProcess, 0, strlen(dllPath) + 1, MEM_COMMIT, PAGE_READWRITE);
 
-		// We Write the path to the address of the memory we just allocated in the target process
+		// We write the path to the address of the memory we just allocated in the target process
 		WriteProcessMemory(hProcess, loadPath, (LPVOID)dllPath, strlen(dllPath) + 1, 0);
 
 		// This will create a Remote Thread in the target process which calls LoadLibraryA as our dllpath as an argument -> program loads our dll
